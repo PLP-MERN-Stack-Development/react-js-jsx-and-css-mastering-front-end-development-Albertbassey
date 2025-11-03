@@ -1,0 +1,39 @@
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+/* Global rules handled in components (Layout) using Tailwind utility classes.
+    Keeping this file minimal avoids `@apply`/theme() resolution issues in this setup. */
+
+/*
+   Safe global theming using CSS variables so we don't rely on @apply or theme()
+   which can cause PostCSS/Tailwind resolution issues in some setups. The
+   `ThemeProvider` toggles the `dark` class on <html> to switch variables.
+*/
+
+:root {
+   --bg: #ffffff; /* white */
+   --text: #111827; /* gray-900 */
+   --muted: #6b7280; /* gray-500 */
+}
+
+.dark {
+   --bg: #0f172a; /* gray-900-ish */
+   --text: #ffffff;
+   --muted: #9ca3af; /* gray-400 */
+}
+
+html, body, #root {
+   height: 100%;
+}
+
+body {
+   background-color: var(--bg);
+   color: var(--text);
+   transition: background-color 300ms ease, color 300ms ease;
+}
+
+/* utility-ish helpers that don't need Tailwind processing */
+.muted { color: var(--muted); }
